@@ -1,4 +1,4 @@
-package people;
+package game;
 
 public class Person {
 
