@@ -48,7 +48,8 @@ public class city {
     	return index % citySize;
     }
     
-    public void generateNeighborhoods() {
+    public void generateNeighborhoods() 
+    {
     	
     	if (neighborhoods == null)
     		return;
@@ -59,19 +60,22 @@ public class city {
     		for (int y=0; y<neighborhoods[x].length; y++) {
     			index++;
     			
-    			EmptyNeighborhood e = new EmptyRoom();
-    			e.setX(x);
-    			e.setY(y);
-    			e.setIndex(index);
+    			EmptyNeighborhood empty = new EmptyNeighborhood();
+    			empty.setX(x);
+    			empty.setY(y);
+    			empty.setIndex(index);
     			
-    			neighborhoods[x][y] = e;
+    			neighborhoods[x][y] = empty;
     		}
     	}
     	
-		
-    	
-    	
     }
+    
+    int amountOfBanks;
+    int amountOfDelis;
+    int amountHouse = 1;
+    
     
 
 }
+

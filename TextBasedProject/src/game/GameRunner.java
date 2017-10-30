@@ -28,7 +28,7 @@ public class GameRunner {
   	
     	while (!citySize.equalsIgnoreCase("Urban") && !citySize.equalsIgnoreCase("Suburban")) 
     	{
-    		System.out.println("Please select only S, M, L: ");
+    		System.out.println("Please select only Urban or Suburban: ");
     		citySize = sc.nextLine();    		
     	}
     	
@@ -43,18 +43,18 @@ public class GameRunner {
     		citySizeInt = city.SUBURBAN;
     	}
     	
-    	System.out.println("You've selected board of size: " + citySize + " (" + citySizeInt+"x"+citySizeInt+")");
+    	System.out.println("You've selected board: " + citySize + " (" + citySizeInt+"x"+citySizeInt+")");
     		
     	
-    	// Generating room based on the size selected
+    	// Generating room based on the type of place
         city gameCity = new city(citySizeInt);
-        gameCity.generateRooms();
+        gameCity.generateNeighborhoods();
         
         // Getting person info
-        Person Person = new Person();
-        Person.askForName(); 
+        Person player = new Person();
+        player.askForName(); 
         
-        System.out.println("Welcome to the city, " + Person.askForName());
+        System.out.println("Welcome to the city, "+player.getName()+"\nYou are the X on the board! Find your location.");
         
         
         
@@ -67,7 +67,7 @@ public class GameRunner {
             gameCity.printBoard();
 		//while loop not finished;
             
-          
+          //temporary.  Need to implement player moves and other actions in everyday.
             gameOn = false;
             
         }

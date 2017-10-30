@@ -6,7 +6,7 @@ public abstract class Neighborhood {
     public boolean explored;
     private int x, y, index;
 
-    public Room () {
+    public  Neighborhood() {
         this.explored = false;
     }
 
