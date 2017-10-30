@@ -18,6 +18,7 @@ public class GameRunner {
     }
 	
 	
+	
 	private void runGame() {
 		
 		System.out.println("Hello! Welcome to a simulation through a new world. \nDo you want to play in a Urban place or a Suburban place?");
@@ -64,10 +65,8 @@ public class GameRunner {
             
         	
             gameCity.printBoard();
-
-            // String move = player1.chooseMove();
-            // Utilities.movePlayer(tech, player1,move);
-            // gameOn = false;
+		//while loop not finished;
+            
           
             gameOn = false;
             
