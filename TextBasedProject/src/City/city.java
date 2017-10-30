@@ -1,35 +1,77 @@
 package City;
 
-import neighborhood.Neighborhood;
-import utilities.Utility;
+import java.util.Arrays;
+import java.util.Collections;
+
+import neighborhood.*;
 
 public class city {
-	private Neighborhood[][] cityMap;
-	public city(Neighborhood[][] cityMap)
-	{
-		this.cityMap = cityMap;
-	}
+
+
+	public static final int URBAN = 6;
+	public static final int SUBURBAN = 8;
 	
-	public void printMap()
-	{
-		for (Neighborhood[] row : cityMap)
-		{
-			System.out.print("Burrough name");
-			for(Neighborhood neighborhood : row)
-			{
-				System.out.print("[ ]");
-			}
-			System.out.println();	
-		}
-	}
 	
-	public Neighborhood[][] getCityMap()
-	{
-		return cityMap;
-	}
-	
-	public void setSchoolMap(Neighborhood[][] cityMap) 
-	{
-        this.cityMap = cityMap;
+    private Neighborhood[][] neighborhoods;
+    private int citySize = 0;
+    
+
+    public city(int citySizeInt) {
+
+    	this.citySize = citySizeInt;
+    	this.neighborhoods = new Neighborhood[citySize][citySize];
+       
     }
+
+    public void printBoard() {
+    
+        for(Neighborhood[] row : neighborhoods) {
+        
+            for (Neighborhood nb : row) {
+            
+                nb.print();
+            }
+            System.out.println();
+        }
+    }
+    
+    public Neighborhood[][] getRooms() {
+        return neighborhoods;
+    }
+
+    
+    private int getXfromNbIndex(int index) {
+    	return (int) index/citySize;
+    }
+    
+    private int getYfromNbIndex(int index) {
+    	return index % citySize;
+    }
+    
+    public void generateNeighborhoods() {
+    	
+    	if (neighborhoods == null)
+    		return;
+    	
+    	
+		int index=0;
+    	for (int x=0; x<neighborhoods.length; x++) {
+    		for (int y=0; y<neighborhoods[x].length; y++) {
+    			index++;
+    			
+    			EmptyNeighborhood e = new EmptyRoom();
+    			e.setX(x);
+    			e.setY(y);
+    			e.setIndex(index);
+    			
+    			neighborhoods[x][y] = e;
+    		}
+    	}
+    	
+		
+    	
+    	
+    }
+    
+
 }
