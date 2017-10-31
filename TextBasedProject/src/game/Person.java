@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Person {
 	String name;
-	private int amountOfMoney;
+	private int amountOfMoney = 10;
 	public boolean hungryThirsty = true;
 	public int numOfMoves = 0;
 	private int positionX, positionY; 
@@ -39,22 +39,23 @@ public class Person {
 		String input = sc.next();
 		System.out.println("Moving " + input + "!");
 
-		if (input.equalsIgnoreCase("up")) {
-
+		if (input.equalsIgnoreCase("up")) 
+		{	
+			positionY++;
+		} 
 		
-
-		} else if (input.equalsIgnoreCase("down")) {
-
+		else if (input.equalsIgnoreCase("down")) 
+		{
+			positionY--;
+		}
 		
-
-		} else if (input.equalsIgnoreCase("left")) {
-
-		
-
-		} else if (input.equalsIgnoreCase("right")) {
-
-		
-
+		else if (input.equalsIgnoreCase("left")) 
+		{
+			positionX--;
+		} 
+		else if (input.equalsIgnoreCase("right")) 
+		{
+			positionX++;
 		}
 
 	}
@@ -66,5 +67,10 @@ public class Person {
 	public String getName()
 	{
 		return name;
+	}
+	public int getMoney()
+	{
+		return amountOfMoney;
+		
 	}
 }

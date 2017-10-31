@@ -13,27 +13,33 @@ public abstract class Building {
     public abstract void print();
     
 
-	public int getIndex() {
+	public int getIndex() 
+	{
 		return index;
 	}
 
-	public void setIndex(int index) {
+	public void setIndex(int index) 
+	{
 		this.index = index;
 	}
 
-	public int getY() {
+	public int getY() 
+	{
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(int y) 
+	{
 		this.y = y;
 	}
 
-	public int getX() {
+	public int getX() 
+	{
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(int x) 
+	{
 		this.x = x;
 	}
 

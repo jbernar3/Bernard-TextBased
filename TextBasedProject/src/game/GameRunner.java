@@ -17,8 +17,6 @@ public class GameRunner {
     	System.exit(0);
     }
 	
-	
-	
 	private void runGame() {
 		
 		System.out.println("Hello! Welcome to a simulation through a new world. \nDo you want to play in a small or large neighborhood?");
@@ -32,7 +30,6 @@ public class GameRunner {
     		boardType = sc.nextLine();    		
     	}
     	
-    	
     	int boardSizeInt;
     	if (boardType.equalsIgnoreCase("small")) 
     	{
@@ -45,9 +42,6 @@ public class GameRunner {
     	
     	System.out.println("You've selected board: " + boardType + " (" + boardSizeInt+"x"+boardSizeInt+")");
    
-    	
-    		
-    	
     	// Generating buildings based on chose of size
         Board gameNeighborhood = new Board(boardSizeInt);
         gameNeighborhood.generateBuildings();
@@ -64,9 +58,8 @@ public class GameRunner {
         
         boolean gameOn = true;
                 
-        while (gameOn) {
-            
-        	
+        while (gameOn) 
+        {
             gameNeighborhood.printBoard();
 		//while loop not finished;
             
