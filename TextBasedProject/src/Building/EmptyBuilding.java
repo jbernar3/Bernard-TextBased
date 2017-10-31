@@ -1,6 +1,6 @@
-package neighborhood;
+package Building;
 
-public class EmptyNeighborhood extends Neighborhood
+public class EmptyBuilding extends Building
 {
 	@Override
 	public void print() 

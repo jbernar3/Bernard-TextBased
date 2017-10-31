@@ -2,8 +2,8 @@
 package game;
 
 import java.util.Scanner;
-import City.city;
-import neighborhood.Neighborhood;
+import Board.Board;
+import Building.Building;
 
 
 public class GameRunner {
@@ -21,40 +21,43 @@ public class GameRunner {
 	
 	private void runGame() {
 		
-		System.out.println("Hello! Welcome to a simulation through a new world. \nDo you want to play in a Urban place or a Suburban place?");
+		System.out.println("Hello! Welcome to a simulation through a new world. \nDo you want to play in a small or large neighborhood?");
     	
     	Scanner sc = new Scanner(System.in);
-    	String citySize = sc.nextLine();
+    	String boardType = sc.nextLine();
   	
-    	while (!citySize.equalsIgnoreCase("Urban") && !citySize.equalsIgnoreCase("Suburban")) 
+    	while (!boardType.equalsIgnoreCase("small") && !boardType.equalsIgnoreCase("large")) 
     	{
-    		System.out.println("Please select only Urban or Suburban: ");
-    		citySize = sc.nextLine();    		
+    		System.out.println("Please select only small or large: ");
+    		boardType = sc.nextLine();    		
     	}
     	
     	
-    	int citySizeInt;
-    	if (citySize.equalsIgnoreCase("Urban")) 
+    	int boardSizeInt;
+    	if (boardType.equalsIgnoreCase("small")) 
     	{
-    		citySizeInt = city.URBAN;
+    		boardSizeInt = Board.SMALL;
     	}
     	else
     	{
-    		citySizeInt = city.SUBURBAN;
+    		boardSizeInt = Board.LARGE;
     	}
     	
-    	System.out.println("You've selected board: " + citySize + " (" + citySizeInt+"x"+citySizeInt+")");
+    	System.out.println("You've selected board: " + boardType + " (" + boardSizeInt+"x"+boardSizeInt+")");
+   
+    	
     		
     	
-    	// Generating room based on the type of place
-        city gameCity = new city(citySizeInt);
-        gameCity.generateNeighborhoods();
+    	// Generating buildings based on chose of size
+        Board gameNeighborhood = new Board(boardSizeInt);
+        gameNeighborhood.generateBuildings();
         
-        // Getting person info
+        // Getting info from user
         Person player = new Person();
         player.askForName(); 
+        gameNeighborhood.askForName();
         
-        System.out.println("Welcome to the city, "+player.getName()+"\nYou are the X on the board! Find your location.");
+        System.out.println("Welcome to your neighborhood, "+player.getName()+"\nIt looks like a beautiful night in "+gameNeighborhood.getName());
         
         
         
@@ -64,7 +67,7 @@ public class GameRunner {
         while (gameOn) {
             
         	
-            gameCity.printBoard();
+            gameNeighborhood.printBoard();
 		//while loop not finished;
             
           //temporary.  Need to implement player moves and other actions in everyday.

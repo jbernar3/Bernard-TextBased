@@ -1,12 +1,12 @@
-package neighborhood;
+package Building;
 
 
-public abstract class Neighborhood {
+public abstract class Building {
 
     public boolean explored;
     private int x, y, index;
 
-    public  Neighborhood() {
+    public  Building() {
         this.explored = false;
     }
 

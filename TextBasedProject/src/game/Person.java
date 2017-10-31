@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class Person {
 	String name;
+	private int amountOfMoney;
+	public boolean hungryThirsty = true;
+	public int numOfMoves = 0;
+	private int positionX, positionY; 
 	public void askForName() 
 	{
 
@@ -22,6 +26,43 @@ public class Person {
 		
 		
 	}
+	public void chooseMove()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Would you like to move up, left, right or down?");
+		while (!sc.hasNext("[upleftrightdown]")) 
+		{
+		    System.out.println("That's not correct, please try again. Use only up, left, right, or down.");
+		    sc.next();
+		}
+		
+		String input = sc.next();
+		System.out.println("Moving " + input + "!");
+
+		if (input.equalsIgnoreCase("up")) {
+
+		
+
+		} else if (input.equalsIgnoreCase("down")) {
+
+		
+
+		} else if (input.equalsIgnoreCase("left")) {
+
+		
+
+		} else if (input.equalsIgnoreCase("right")) {
+
+		
+
+		}
+
+	}
+	
+	
+	
+	
+	
 	public String getName()
 	{
 		return name;
