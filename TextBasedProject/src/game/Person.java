@@ -1,13 +1,15 @@
 package game;
 
 import java.util.Scanner;
+import Building.Building;
 
 public class Person {
 	String name;
 	private int amountOfMoney = 10;
 	public boolean hungryThirsty = true;
 	public int numOfMoves = 0;
-	private int positionX, positionY; 
+	private int posX, posY; 
+	private int posIndex;
 	public void askForName() 
 	{
 
@@ -41,26 +43,62 @@ public class Person {
 
 		if (input.equalsIgnoreCase("up")) 
 		{	
-			positionY++;
+			posY++;
 		} 
 		
 		else if (input.equalsIgnoreCase("down")) 
 		{
-			positionY--;
+			posY--;
 		}
 		
 		else if (input.equalsIgnoreCase("left")) 
 		{
-			positionX--;
+			posX--;
 		} 
 		else if (input.equalsIgnoreCase("right")) 
 		{
-			positionX++;
+			posX++;
 		}
 
 	}
 	
+	public void setPosition(int xCoord, int yCoord, int boardSize)
+	{
+		this.setPosX(xCoord);
+		this.setPosY(yCoord);
+		this.posIndex = xCoord + yCoord;
+	}
 	
+	public int getIndex() 
+	{
+		return posIndex;
+	}
+
+	public void setPosIndex(int index) 
+	{
+		this.posIndex = index;
+	}
+
+	public int getPosY() 
+	{
+		return posY;
+	}
+
+	public void setPosY(int y) 
+	{
+		this.posY = y;
+	}
+
+	public int gePostX() 
+	{
+		return posX;
+	}
+
+	public void setPosX(int x) 
+	{
+		this.posX = x;
+	}
+
 	
 	
 	

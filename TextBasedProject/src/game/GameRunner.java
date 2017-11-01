@@ -48,6 +48,9 @@ public class GameRunner {
         
         // Getting info from user
         Person player = new Person();
+        player.setPosition(0, 0, boardSizeInt);
+        
+        
         player.askForName(); 
         gameNeighborhood.askForName();
         

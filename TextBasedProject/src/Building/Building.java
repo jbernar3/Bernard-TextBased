@@ -9,7 +9,19 @@ public abstract class Building {
     public  Building() {
         this.explored = false;
     }
-
+	
+    public void print(boolean playerIn) 
+	{
+		if (playerIn)
+			System.out.print("[ X ]");
+		
+		else if (explored)
+			System.out.print("[ 0 ]");
+		
+		else
+			print();
+	}
+    
     public abstract void print();
     
 

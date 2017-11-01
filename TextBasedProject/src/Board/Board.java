@@ -3,6 +3,7 @@ package Board;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
+import game.Person;
 
 import Building.*;
 
@@ -12,7 +13,7 @@ public class Board {
 	public static final int SMALL = 6;
 	public static final int LARGE = 10;
 	String name;
-	
+	private Person player;
     private Building[][] buildings;
     private int boardSize = 0;
     
@@ -33,7 +34,7 @@ public class Board {
         
             for (Building nb : row) 
             {
-                nb.print();
+                nb.print(isOccupied(nb));
             }
             System.out.println();
         }
@@ -107,6 +108,31 @@ public class Board {
 		
 		
 	}
+    
+    public Person getPlayer()
+    {
+    	return player;
+    }
+    
+    public void setPlayer(Person player)
+    {
+    	this.player = player;
+    }
+    
+    private boolean isOccupied(Building building) 
+    {
+    	
+    	if (this.getPlayer() == null)
+    		return false;
+    	
+    	if (building.getIndex() == this.getPlayer().getIndex()) 
+    		return true;
+    	
+    	else 
+    		return false;
+    	
+    	
+    }
 	public String getName()
 	{
 		return name;
