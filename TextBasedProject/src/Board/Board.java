@@ -5,7 +5,8 @@ import java.util.Collections;
 import java.util.Scanner;
 import game.Person;
 
-import Building.*;
+import Building.Building;
+import Building.EmptyBuilding;
 
 public class Board {
 
@@ -40,7 +41,7 @@ public class Board {
         }
     }
     
-    public Building[][] getRooms() 
+    public Building[][] getBuildings() 
     {
         return buildings;
     }
@@ -79,13 +80,23 @@ public class Board {
     	{
     		for (int y=0; y<buildings[x].length; y++) 
     		{
-    			index++;
-    			EmptyBuilding empty = new EmptyBuilding();
-    			empty.setX(x);
-    			empty.setY(y);
-    			empty.setIndex(index);
     			
-    			buildings[x][y] = empty;
+    			if ((x==player.getPosX()) && (y==player.getPosY()))
+    			{
+    				System.out.print("[ X ]");
+    			}
+    			
+    			else 
+    			{
+    				EmptyBuilding empty = new EmptyBuilding();
+    				empty.setX(x);
+    				empty.setY(y);
+    				empty.setIndex(index);
+    				buildings[x][y] = empty;
+    			}
+    			index++;
+    		
+    			
     		}
     	}
     }
@@ -130,8 +141,7 @@ public class Board {
     	
     	else 
     		return false;
-    	
-    	
+    
     }
 	public String getName()
 	{

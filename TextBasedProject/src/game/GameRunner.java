@@ -6,6 +6,7 @@ import Board.Board;
 import Building.Building;
 
 
+
 public class GameRunner {
 
 	
@@ -49,6 +50,7 @@ public class GameRunner {
         // Getting info from user
         Person player = new Person();
         player.setPosition(0, 0, boardSizeInt);
+        Building build = gameNeighborhood.getBuildings()[0][0];
         
         
         player.askForName(); 
@@ -64,9 +66,7 @@ public class GameRunner {
         while (gameOn) 
         {
             gameNeighborhood.printBoard();
-		//while loop not finished;
-            
-          //temporary.  Need to implement player moves and other actions in everyday.
+		
             gameOn = false;
             
         }

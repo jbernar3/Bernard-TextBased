@@ -89,7 +89,7 @@ public class Person {
 		this.posY = y;
 	}
 
-	public int gePostX() 
+	public int getPosX() 
 	{
 		return posX;
 	}

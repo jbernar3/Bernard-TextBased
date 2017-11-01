@@ -1,13 +1,15 @@
 package Building;
 
-
+import game.Person;
 public abstract class Building {
 
     public boolean explored;
     private int x, y, index;
+    private Person[] occupants;
 
-    public  Building() {
+    public  Building(Person[] occupants) {
         this.explored = false;
+        this.occupants=occupants;
     }
 	
     public void print(boolean playerIn) 
