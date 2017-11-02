@@ -13,6 +13,7 @@ public class Board {
 
 	public static final int SMALL = 6;
 	public static final int LARGE = 10;
+	
 	String name;
 	private Person player;
     private Building[][] buildings;
@@ -32,13 +33,22 @@ public class Board {
     
         for(Building[] row : buildings) 
         {
-        
             for (Building nb : row) 
             {
-                nb.print(isOccupied(nb));
+                nb.print(isOccupied1(nb));
             }
             System.out.println();
         }
+    }
+    
+    public Person getPlayer()
+    {
+    	return player;
+    }
+    
+    public void setPlayer(Person player)
+    {
+    	this.player = player;
     }
     
     public Building[][] getBuildings() 
@@ -63,11 +73,24 @@ public class Board {
      * You don't know where home is and don't know where the delis are.
      * Also, there are hidden people and places that take your money or you have to fight.
      */
-    int amountOfBanks;
-    int amountOfDelis;
-    int amountHouse = 1;
     
+    //int amountOfBanks;
+    //int amountOfDelis;
+    //int amountHouse = 1;
     
+    private boolean isOccupied1(Building building) 
+    {
+    	
+    	if (this.getPlayer() == null)
+    		return false;
+    	
+    	if (building.getIndex() == this.getPlayer().getIndex()) 
+    		return true;
+    	
+    	else 
+    		return false;
+    
+    }
     
     public void generateBuildings() 
     {
@@ -80,26 +103,18 @@ public class Board {
     	{
     		for (int y=0; y<buildings[x].length; y++) 
     		{
-    			
-    			if ((x==player.getPosX()) && (y==player.getPosY()))
-    			{
-    				System.out.print("[ X ]");
-    			}
-    			
-    			else 
-    			{
-    				EmptyBuilding empty = new EmptyBuilding();
-    				empty.setX(x);
-    				empty.setY(y);
-    				empty.setIndex(index);
-    				buildings[x][y] = empty;
-    			}
-    			index++;
+    			EmptyBuilding empty = new EmptyBuilding();
+    			//empty.setX(x);
+    			//empty.setY(y);
+    			empty.setIndex(index);
+    			buildings[x][y] = empty;
+   			}
+   			index++;
     		
     			
     		}
     	}
-    }
+    
     
     public void askForName() 
 	{
@@ -120,29 +135,7 @@ public class Board {
 		
 	}
     
-    public Person getPlayer()
-    {
-    	return player;
-    }
-    
-    public void setPlayer(Person player)
-    {
-    	this.player = player;
-    }
-    
-    private boolean isOccupied(Building building) 
-    {
-    	
-    	if (this.getPlayer() == null)
-    		return false;
-    	
-    	if (building.getIndex() == this.getPlayer().getIndex()) 
-    		return true;
-    	
-    	else 
-    		return false;
-    
-    }
+  
 	public String getName()
 	{
 		return name;

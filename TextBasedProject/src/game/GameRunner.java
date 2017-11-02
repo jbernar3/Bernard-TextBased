@@ -4,6 +4,7 @@ package game;
 import java.util.Scanner;
 import Board.Board;
 import Building.Building;
+import game.Person;
 
 
 

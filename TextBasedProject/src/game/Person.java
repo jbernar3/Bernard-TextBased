@@ -10,6 +10,16 @@ public class Person {
 	public int numOfMoves = 0;
 	private int posX, posY; 
 	private int posIndex;
+	
+	public Person(int amountOfMoney)
+	{
+		this.setMoney(amountOfMoney);
+	}
+	public Person()
+	{
+		this.setMoney(10);
+	}
+	
 	public void askForName() 
 	{
 
@@ -28,7 +38,7 @@ public class Person {
 		
 		
 	}
-	public void chooseMove()
+	public String chooseMove()
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Would you like to move up, left, right or down?");
@@ -39,34 +49,14 @@ public class Person {
 		}
 		
 		String input = sc.next();
-		System.out.println("Moving " + input + "!");
-
-		if (input.equalsIgnoreCase("up")) 
-		{	
-			posY++;
-		} 
-		
-		else if (input.equalsIgnoreCase("down")) 
-		{
-			posY--;
-		}
-		
-		else if (input.equalsIgnoreCase("left")) 
-		{
-			posX--;
-		} 
-		else if (input.equalsIgnoreCase("right")) 
-		{
-			posX++;
-		}
-
+		return input;
 	}
 	
 	public void setPosition(int xCoord, int yCoord, int boardSize)
 	{
 		this.setPosX(xCoord);
 		this.setPosY(yCoord);
-		this.posIndex = xCoord + yCoord;
+		this.posIndex = xCoord*boardSize + yCoord;
 	}
 	
 	public int getIndex() 
@@ -110,5 +100,10 @@ public class Person {
 	{
 		return amountOfMoney;
 		
+	}
+	
+	public void setMoney(int money)
+	{
+		this.amountOfMoney = money;
 	}
 }

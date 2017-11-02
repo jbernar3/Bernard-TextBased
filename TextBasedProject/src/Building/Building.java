@@ -3,9 +3,16 @@ package Building;
 import game.Person;
 public abstract class Building {
 
-    public boolean explored;
+	public static final int EMPTY = 0;
+	public static final int DELI = 1;
+	public static final int CLO = 2;
+	public static final int HOME = 3;
+	
+    public boolean explored = false;
     private int x, y, index;
     private Person[] occupants;
+    
+    public abstract void print();
 
     public  Building(Person[] occupants) {
         this.explored = false;
@@ -24,8 +31,6 @@ public abstract class Building {
 			print();
 	}
     
-    public abstract void print();
-    
 
 	public int getIndex() 
 	{
@@ -36,7 +41,12 @@ public abstract class Building {
 	{
 		this.index = index;
 	}
-
+	
+	public void setExplored(boolean explored) 
+	{
+		this.explored = explored;
+	}
+/*
 	public int getY() 
 	{
 		return y;
@@ -56,6 +66,6 @@ public abstract class Building {
 	{
 		this.x = x;
 	}
-
+*/
 
 }
