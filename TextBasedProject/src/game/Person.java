@@ -11,6 +11,7 @@ public class Person {
 	private int posX, posY; 
 	private int posIndex;
 	
+	
 	public Person(int amountOfMoney)
 	{
 		this.setMoney(amountOfMoney);

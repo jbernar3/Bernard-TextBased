@@ -8,6 +8,7 @@ public abstract class Building {
 	public static final int CLO = 2;
 	public static final int HOME = 3;
 	
+	
     public boolean explored = false;
     private int x, y, index;
     private Person[] occupants;

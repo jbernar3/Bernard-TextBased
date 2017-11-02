@@ -92,6 +92,7 @@ public class Board {
     
     }
     
+    
     public void generateBuildings() 
     {
     	

@@ -6,6 +6,7 @@ public class EmptyBuilding extends Building
 {
 	public EmptyBuilding() {
 		//super([]);
+		
 		// TODO Auto-generated constructor stub
 	}
 

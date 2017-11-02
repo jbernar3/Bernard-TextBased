@@ -42,6 +42,7 @@ public class GameRunner {
     		boardSizeInt = Board.LARGE;
     	}
     	
+    	
     	System.out.println("You've selected board: " + boardType + " (" + boardSizeInt+"x"+boardSizeInt+")");
    
     	// Generating buildings based on chose of size
