@@ -58,6 +58,8 @@ public class GameRunner {
         player.askForName(); 
         gameNeighborhood.askForName();
         
+        gameNeighborhood.setPlayer(player);
+        
         System.out.println("Welcome to your neighborhood, "+player.getName()+"\nIt looks like a beautiful night in "+gameNeighborhood.getName());
         
         

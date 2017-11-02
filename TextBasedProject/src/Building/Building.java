@@ -14,19 +14,21 @@ public abstract class Building {
     private Person[] occupants;
     
     public abstract void print();
-
-    public  Building(Person[] occupants) {
+/*
+    public  Building(Person[] occupants) 
+    {
         this.explored = false;
         this.occupants=occupants;
     }
+    */
 	
     public void print(boolean playerIn) 
 	{
 		if (playerIn)
-			System.out.print("[ X ]");
+			System.out.print("[X]");
 		
 		else if (explored)
-			System.out.print("[ 0 ]");
+			System.out.print("[0]");
 		
 		else
 			print();
