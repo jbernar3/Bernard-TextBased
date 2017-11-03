@@ -25,7 +25,7 @@ public class GameRunner {
 		Thread.sleep(1500);
 		System.out.println("You will be playing a survival game placed in NYC.");
 		Thread.sleep(1500);
-		System.out.println("You have snuck out of your house and you want to make as much money as possible.");
+		System.out.println("You have snuck out of your house and you want to make as much money as possible by gambling with people you will find along the way.");
 		Thread.sleep(1500);
 		System.out.println("But you can't go home hungry so you must stop at a deli.");
 		Thread.sleep(1500);
@@ -74,7 +74,7 @@ public class GameRunner {
         System.out.println("Welcome to your neighborhood, "+player.getName()+"\nIt looks like a beautiful night in "+gameNeighborhood.getName());
         
         
-        
+      
         
         boolean gameOn = true;
                 
@@ -86,27 +86,27 @@ public class GameRunner {
             
             String move = player.chooseMove();
             
-            if (move.equalsIgnoreCase("up")) 
+            if (move.equalsIgnoreCase("u")) 
             {
     			if (player.getPosY()  > 0) 
     				player.setPosition(player.getPosX(), player.getPosY()-1, boardSizeInt);    		
     			
     		} 
-            else if (move.equalsIgnoreCase("left")) 
+            else if (move.equalsIgnoreCase("l")) 
             {
     			
     			if (player.getPosX() > 0) 
     				player.setPosition(player.getPosX()-1, player.getPosY(), boardSizeInt);
     			
     		} 
-            else if (move.equalsIgnoreCase("right")) 
+            else if (move.equalsIgnoreCase("r")) 
     		{		
     			
     			if (player.getPosY() < boardSizeInt-1) 
     				player.setPosition(player.getPosX(), player.getPosY()+1, boardSizeInt);    	
     			
     		} 
-    		else if (move.equalsIgnoreCase("down")) 
+    		else if (move.equalsIgnoreCase("d")) 
     		{
     			
     			if (player.getPosX() < boardSizeInt-1) 

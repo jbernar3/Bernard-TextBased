@@ -14,13 +14,13 @@ public abstract class Building {
     private Person[] occupants;
     
     public abstract void print();
-/*
+
     public  Building(Person[] occupants) 
     {
         this.explored = false;
         this.occupants=occupants;
     }
-    */
+    
 	
     public void print(boolean occupied) 
     {
@@ -29,7 +29,7 @@ public abstract class Building {
 		else if (explored)
 			System.out.print("[-]");
 		else
-			print();
+			System.out.print("[ ]");;
 	}
     
 

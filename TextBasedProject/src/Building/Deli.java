@@ -3,16 +3,19 @@ import java.util.Random;
 import java.util.Scanner;
 import utilities.Utility;
 import game.Person;
-public class Deli extends Building{
-String[]menu = {"","","","",""};
-Random rand = new Random();
-int priceSandwich = rand.nextInt(5)+3;
-int priceDrink = rand.nextInt(4)+1;
-int buildingLevel;
+public class Deli extends Building
+{
+	String[]menu = {"","","","",""};
+	Random rand = new Random();
+	int priceSandwich = rand.nextInt(5)+3;
+	int priceDrink = rand.nextInt(4)+1;
+	int buildingLevel;
 	
-	public Deli() {
-		this.menu = generateMenu();
+	public Deli(Person[] occupants) {
+		//this.menu = generateMenu();
+		super(occupants); 
 	}
+	
 	/*
 	 * void generateMenu()
 	 * Creates a random menu for a deli that has two different sandwiches and two different drinks.

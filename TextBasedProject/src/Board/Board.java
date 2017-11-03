@@ -84,8 +84,11 @@ public class Board {
     		return false;
     	
     	if (building.getIndex() == this.getPlayer().getIndex()) 
+    	{
+    		System.out.println(building.getIndex());
     		return true;
-    	
+    	}
+    		
     	else 
     		return false;
     
@@ -93,7 +96,8 @@ public class Board {
     
     private void createDeli(int randRoomIndex) 
     {
-		Deli del = new Deli();    			
+    	Person[] occupants = null;
+		Deli del = new Deli(occupants);    			
 		del.setIndex(randRoomIndex);			
 		buildings[getXFromBuildingIndex(randRoomIndex)][getYFromBuildingIndex(randRoomIndex)] = del;
 		
@@ -102,6 +106,7 @@ public class Board {
     
     public void generateBuildings() 
     {
+    	Person[] occupants = null;
     	
     	if (buildings == null)
     		return;
@@ -111,12 +116,13 @@ public class Board {
     	{
     		for (int y=0; y<buildings[x].length; y++) 
     		{
-    			EmptyBuilding empty = new EmptyBuilding();
+    			EmptyBuilding empty = new EmptyBuilding(occupants);
     			
     			empty.setIndex(index);
     			buildings[x][y] = empty;
+    			
+    			index++;
    			}
-   			index++;
     	}
     	
     	int amountOfDelis = 0;
