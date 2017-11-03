@@ -21,16 +21,17 @@ public class GameRunner {
 	
 	private void runGame() throws InterruptedException {
 		
+		int sleepTime = 500;
 		System.out.println("Hello! Welcome to a simulation through a new world.");
-		Thread.sleep(1500);
+		Thread.sleep(sleepTime);
 		System.out.println("You will be playing a survival game placed in NYC.");
-		Thread.sleep(1500);
+		Thread.sleep(sleepTime);
 		System.out.println("You have snuck out of your house and you want to make as much money as possible by gambling with people you will find along the way.");
-		Thread.sleep(1500);
+		Thread.sleep(sleepTime);
 		System.out.println("But you can't go home hungry so you must stop at a deli.");
-		Thread.sleep(1500);
+		Thread.sleep(sleepTime);
 		System.out.println("The problem is though..... you don't know where anything is.");
-		Thread.sleep(1500);
+		Thread.sleep(sleepTime);
 		System.out.println("Do you want to play in a small or large neighborhood?");
     	
     	Scanner sc = new Scanner(System.in);
