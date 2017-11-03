@@ -16,6 +16,7 @@ public class Person {
 	{
 		this.setMoney(amountOfMoney);
 	}
+	
 	public Person()
 	{
 		this.setMoney(10);
@@ -43,9 +44,9 @@ public class Person {
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Would you like to move up, left, right or down?");
-		while (!sc.hasNext("[upleftrightdown]")) 
+		while (!sc.hasNext("[ulrdULRD]")) 
 		{
-		    System.out.println("That's not correct, please try again. Use only up, left, right, or down.");
+		    System.out.println("That's not correct, please try again. Use only u for up, l for left, r for right, or d for down.");
 		    sc.next();
 		}
 		
@@ -100,7 +101,6 @@ public class Person {
 	public int getMoney()
 	{
 		return amountOfMoney;
-		
 	}
 	
 	public void setMoney(int money)

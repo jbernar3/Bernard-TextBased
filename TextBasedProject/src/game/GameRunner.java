@@ -11,7 +11,7 @@ import game.Person;
 public class GameRunner {
 
 	
-    public static void main (String[] args) {
+    public static void main (String[] args) throws InterruptedException {
 
     	GameRunner gr = new GameRunner();
     	gr.runGame();
@@ -19,9 +19,19 @@ public class GameRunner {
     	System.exit(0);
     }
 	
-	private void runGame() {
+	private void runGame() throws InterruptedException {
 		
-		System.out.println("Hello! Welcome to a simulation through a new world. \nDo you want to play in a small or large neighborhood?");
+		System.out.println("Hello! Welcome to a simulation through a new world.");
+		Thread.sleep(1500);
+		System.out.println("You will be playing a survival game placed in NYC.");
+		Thread.sleep(1500);
+		System.out.println("You have snuck out of your house and you want to make as much money as possible.");
+		Thread.sleep(1500);
+		System.out.println("But you can't go home hungry so you must stop at a deli.");
+		Thread.sleep(1500);
+		System.out.println("The problem is though..... you don't know where anything is.");
+		Thread.sleep(1500);
+		System.out.println("Do you want to play in a small or large neighborhood?");
     	
     	Scanner sc = new Scanner(System.in);
     	String boardType = sc.nextLine();
@@ -59,6 +69,7 @@ public class GameRunner {
         gameNeighborhood.askForName();
         
         gameNeighborhood.setPlayer(player);
+        //System.out.println(player.getPosY());
         
         System.out.println("Welcome to your neighborhood, "+player.getName()+"\nIt looks like a beautiful night in "+gameNeighborhood.getName());
         
@@ -70,8 +81,39 @@ public class GameRunner {
         while (gameOn) 
         {
             gameNeighborhood.printBoard();
-		
-            gameOn = false;
+            
+            System.out.println("You have $" + player.getMoney() + " left.");
+            
+            String move = player.chooseMove();
+            
+            if (move.equalsIgnoreCase("up")) 
+            {
+    			if (player.getPosY()  > 0) 
+    				player.setPosition(player.getPosX(), player.getPosY()-1, boardSizeInt);    		
+    			
+    		} 
+            else if (move.equalsIgnoreCase("left")) 
+            {
+    			
+    			if (player.getPosX() > 0) 
+    				player.setPosition(player.getPosX()-1, player.getPosY(), boardSizeInt);
+    			
+    		} 
+            else if (move.equalsIgnoreCase("right")) 
+    		{		
+    			
+    			if (player.getPosY() < boardSizeInt-1) 
+    				player.setPosition(player.getPosX(), player.getPosY()+1, boardSizeInt);    	
+    			
+    		} 
+    		else if (move.equalsIgnoreCase("down")) 
+    		{
+    			
+    			if (player.getPosX() < boardSizeInt-1) 
+    				player.setPosition(player.getPosX()+1, player.getPosY(), boardSizeInt);
+    				
+    		}
+            
             
         }
 		// in.close();

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 import game.Person;
-
 import Building.Building;
+import Building.Deli;
 import Building.EmptyBuilding;
 
 public class Board {
@@ -30,12 +30,11 @@ public class Board {
 
     public void printBoard() 
     {
-    
-        for(Building[] row : buildings) 
-        {
-            for (Building nb : row) 
-            {
-                nb.print(isOccupied1(nb));
+        
+        for(Building[] row : buildings) {
+        
+            for (Building building : row) {
+                building.print(isOccupied1(building));
             }
             System.out.println();
         }
@@ -92,6 +91,14 @@ public class Board {
     
     }
     
+    private void createDeli(int randRoomIndex) 
+    {
+		Deli del = new Deli();    			
+		del.setIndex(randRoomIndex);			
+		buildings[getXFromBuildingIndex(randRoomIndex)][getYFromBuildingIndex(randRoomIndex)] = del;
+		
+    }
+    
     
     public void generateBuildings() 
     {
@@ -105,16 +112,53 @@ public class Board {
     		for (int y=0; y<buildings[x].length; y++) 
     		{
     			EmptyBuilding empty = new EmptyBuilding();
-    			//empty.setX(x);
-    			//empty.setY(y);
+    			
     			empty.setIndex(index);
     			buildings[x][y] = empty;
    			}
    			index++;
-    		
-    			
-    		}
     	}
+    	
+    	int amountOfDelis = 0;
+    	int amountOfCLO = 0;
+    	int amountOfHome = 1;
+    	if (boardSize == Board.SMALL)
+    	{
+    		amountOfDelis = 8;
+    		amountOfCLO = 5;
+    	}
+    	
+    	else if (boardSize == Board.LARGE)
+    	{
+    		amountOfDelis = 12;
+    		amountOfCLO = 9;
+    	}
+    	
+    	int lastBuildingIndex = boardSize*boardSize;
+		
+	    Integer[] randomBuildings = new Integer[lastBuildingIndex-3];
+	    for (int i = 0; i < randomBuildings.length; i++) {
+	    	randomBuildings[i] = i+1;
+	    }
+	    Collections.shuffle(Arrays.asList(randomBuildings));
+	    
+	    // Deli
+	    for (int x=0; x<amountOfDelis; x++) 
+	    {
+	    	int randBuildingIndex = randomBuildings[x];
+	    	while (randBuildingIndex == 0)
+	    	{
+	    		randBuildingIndex = randomBuildings[x];
+	    	}
+	    	createDeli(randBuildingIndex);
+	    }
+    	
+	    for (int x=0; x<amountOfCLO; x++) {
+	    	int randBuildingIndex = randomBuildings[x+amountOfDelis];
+	    	
+	    }
+    	
+    }
     
     
     public void askForName() 
@@ -141,5 +185,7 @@ public class Board {
 	{
 		return name;
 	}
+	
+	
 }
 

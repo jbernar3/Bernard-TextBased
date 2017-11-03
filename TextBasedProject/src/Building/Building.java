@@ -22,14 +22,12 @@ public abstract class Building {
     }
     */
 	
-    public void print(boolean playerIn) 
-	{
-		if (playerIn)
+    public void print(boolean occupied) 
+    {
+		if (occupied)
 			System.out.print("[X]");
-		
 		else if (explored)
-			System.out.print("[0]");
-		
+			System.out.print("[-]");
 		else
 			print();
 	}
