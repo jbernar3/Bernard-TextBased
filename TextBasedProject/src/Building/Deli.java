@@ -10,17 +10,22 @@ public class Deli extends Building
 	int priceSandwich = rand.nextInt(5)+3;
 	int priceDrink = rand.nextInt(4)+1;
 	int buildingLevel;
+	Person player = null;
 	
-	public Deli(Person[] occupants) {
-		//this.menu = generateMenu();
-		super(occupants); 
+	public Deli(Person[] occupants)
+	{
+		super(occupants);
+	}
+	public void setPlayer(Person player)
+	{
+		this.player = player;
 	}
 	
 	/*
 	 * void generateMenu()
 	 * Creates a random menu for a deli that has two different sandwiches and two different drinks.
 	 */
-	private String[] generateMenu()
+	public String[] generateMenu()
 	{
 		//Arrays of possible food and drink the deli could possibly have.
 		String[] hotSandwich = {"Bacon Egg and Cheese","BLT with Chipotle Mayo","Toasted Bagel with Butter","Heart Attack","Prince Tech"};
@@ -64,6 +69,7 @@ public class Deli extends Building
 	public void print() 
 	{
 		System.out.print("You've ran into a deli!");
+		System.out.println("----------");
 		printMenu();
 	}
 	
@@ -73,14 +79,20 @@ public class Deli extends Building
 		Scanner scName = new Scanner(System.in);
 		String playerChoice = scName.nextLine();
 		
-		while (playerChoice.isEmpty()|| !playerChoice.equalsIgnoreCase(menu[0]) || !playerChoice.equalsIgnoreCase(menu[1]) || !playerChoice.equalsIgnoreCase(menu[2]) || !playerChoice.equalsIgnoreCase(menu[3])) {
-			System.out.println("Please type in one of the menu items.");
+		while (playerChoice.isEmpty()|| findKeyword(playerChoice, menu[0],0)==-1 || findKeyword(playerChoice, menu[1],0)==-1 || findKeyword(playerChoice, menu[2],0)==-1 || findKeyword(playerChoice, menu[3],0)==-1) {
+			System.out.println("Please type in one or more of the menu items.");
 			playerChoice = scName.nextLine();
 		}
 		
-		if (findKeyword(playerChoice, menu[0],0)!=-1 || findKeyword(playerChoice, menu[1],0)!=-1)
+		if (findKeyword(playerChoice, menu[0],0)!=-1)
 		{
+			if (player.getMoney() - priceSandwich<0)
+			{
+				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
+				choosePurchase();
+			}
 			
+			System.out.println("You have purchased " + menu[0] + ".  That will cost you " + priceSandwich);
 		}
 	}
 	

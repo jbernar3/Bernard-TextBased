@@ -85,7 +85,7 @@ public class Board {
     	
     	if (building.getIndex() == this.getPlayer().getIndex()) 
     	{
-    		System.out.println(building.getIndex());
+    		//System.out.println(building.getIndex());
     		return true;
     	}
     		
@@ -98,9 +98,10 @@ public class Board {
     {
     	Person[] occupants = null;
 		Deli del = new Deli(occupants);    			
-		del.setIndex(randRoomIndex);			
+		del.setIndex(randRoomIndex);	
+		del.setPlayer(player);
 		buildings[getXFromBuildingIndex(randRoomIndex)][getYFromBuildingIndex(randRoomIndex)] = del;
-		
+		del.setBuildingType(1);
     }
     
     

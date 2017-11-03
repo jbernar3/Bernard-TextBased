@@ -4,7 +4,9 @@ package game;
 import java.util.Scanner;
 import Board.Board;
 import Building.Building;
+import Building.Deli;
 import game.Person;
+
 
 
 
@@ -82,38 +84,47 @@ public class GameRunner {
         while (gameOn) 
         {
             gameNeighborhood.printBoard();
-            
-            System.out.println("You have $" + player.getMoney() + " left.");
+
+			System.out.println("You have $" + player.getMoney() + " left.");
             
             String move = player.chooseMove();
+            gameNeighborhood.getBuildings()[0][0].setExplored(true);
             
-            if (move.equalsIgnoreCase("u")) 
+            if (move.equalsIgnoreCase("a")) 
             {
     			if (player.getPosY()  > 0) 
     				player.setPosition(player.getPosX(), player.getPosY()-1, boardSizeInt);    		
     			
     		} 
-            else if (move.equalsIgnoreCase("l")) 
+            else if (move.equalsIgnoreCase("w")) 
             {
     			
     			if (player.getPosX() > 0) 
     				player.setPosition(player.getPosX()-1, player.getPosY(), boardSizeInt);
     			
     		} 
-            else if (move.equalsIgnoreCase("r")) 
+            else if (move.equalsIgnoreCase("d")) 
     		{		
     			
     			if (player.getPosY() < boardSizeInt-1) 
     				player.setPosition(player.getPosX(), player.getPosY()+1, boardSizeInt);    	
     			
     		} 
-    		else if (move.equalsIgnoreCase("d")) 
+    		else if (move.equalsIgnoreCase("s")) 
     		{
     			
     			if (player.getPosX() < boardSizeInt-1) 
     				player.setPosition(player.getPosX()+1, player.getPosY(), boardSizeInt);
     				
     		}
+            
+            Building nextBuild = gameNeighborhood.getBuildings()[player.getPosX()][player.getPosY()];
+            nextBuild.setExplored(true);
+            //If the next building is a deli.
+            if (nextBuild.getBuildingType()== 1)
+            {
+            	System.out.println("This is a deli.");
+            }
             
             
         }

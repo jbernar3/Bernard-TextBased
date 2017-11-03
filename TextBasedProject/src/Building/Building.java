@@ -1,6 +1,7 @@
 package Building;
 
 import game.Person;
+
 public abstract class Building {
 
 	public static final int EMPTY = 0;
@@ -12,6 +13,7 @@ public abstract class Building {
     public boolean explored = false;
     private int x, y, index;
     private Person[] occupants;
+    int buildingType = Building.EMPTY;
     
     public abstract void print();
 
@@ -46,6 +48,16 @@ public abstract class Building {
 	public void setExplored(boolean explored) 
 	{
 		this.explored = explored;
+	}
+	
+	public void setBuildingType(int buildingType)
+	{
+		this.buildingType = buildingType;
+	}
+	
+	public int getBuildingType()
+	{
+		return buildingType;
 	}
 /*
 	public int getY() 

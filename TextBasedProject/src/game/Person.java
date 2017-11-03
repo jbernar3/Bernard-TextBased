@@ -43,8 +43,8 @@ public class Person {
 	public String chooseMove()
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Would you like to move up, left, right or down?");
-		while (!sc.hasNext("[ulrdULRD]")) 
+		System.out.println("Would you like to move up (w), left (a), right (d) or down (s)?");
+		while (!sc.hasNext("[wasdWASD]")) 
 		{
 		    System.out.println("That's not correct, please try again. Use only u for up, l for left, r for right, or d for down.");
 		    sc.next();
