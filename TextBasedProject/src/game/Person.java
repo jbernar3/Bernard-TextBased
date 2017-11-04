@@ -6,7 +6,8 @@ import Building.Building;
 public class Person {
 	String name;
 	private int amountOfMoney = 10;
-	public boolean hungryThirsty = true;
+	public boolean hungry = true;
+	public boolean thirsty = true;
 	public int numOfMoves = 0;
 	private int posX, posY; 
 	private int posIndex;
@@ -106,5 +107,25 @@ public class Person {
 	public void setMoney(int money)
 	{
 		this.amountOfMoney = money;
+	}
+	
+	public boolean getHungry()
+	{
+		return hungry;
+	}
+	
+	public void setHungry(boolean hungry)
+	{
+		this.hungry = hungry;
+	}
+	
+	public boolean getThirsty()
+	{
+		return thirsty;
+	}
+	
+	public void setThirsty(boolean thirsty)
+	{
+		this.thirsty = thirsty;
 	}
 }

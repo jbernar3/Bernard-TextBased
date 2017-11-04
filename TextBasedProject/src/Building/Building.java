@@ -2,7 +2,7 @@ package Building;
 
 import game.Person;
 
-public abstract class Building {
+public abstract class Building implements BuildingType{
 
 	public static final int EMPTY = 0;
 	public static final int DELI = 1;
@@ -14,6 +14,7 @@ public abstract class Building {
     private int x, y, index;
     private Person[] occupants;
     int buildingType = Building.EMPTY;
+    Person player = null;
     
     public abstract void print();
 
@@ -21,6 +22,11 @@ public abstract class Building {
     {
         this.explored = false;
         this.occupants=occupants;
+    }
+    
+    public void setPlayer(Person player)
+    {
+    	this.player=player;
     }
     
 	

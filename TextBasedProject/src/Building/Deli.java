@@ -57,10 +57,11 @@ public class Deli extends Building
 	//Prints out the menu of the deli with the prices of drinks and sandwiches at the particular deli.
 	public void printMenu()
 	{
+		System.out.println("MENU");
 		String output = "";
-		for (String item : menu)
+		for (int i=0; i<4;i++)
 		{
-			output += item + "\n";
+			output +=(i+1)+")"+ menu[i] + "\n";
 		}
 		System.out.println(output);
 		System.out.println("Drinks cost "+priceDrink);
@@ -68,113 +69,73 @@ public class Deli extends Building
 	}
 	public void print() 
 	{
-		System.out.print("You've ran into a deli!");
-		System.out.println("----------");
+		System.out.println("You've ran into a deli!");
+		System.out.println("-------------");
+		generateMenu();
 		printMenu();
+		choosePurchase();
 	}
 	
 	public void choosePurchase()
 	{
-		System.out.println("What would you like to purchase?");
+		System.out.println("What would you like to purchase?\nType in the number corresponding to what you want to buy.");
 		Scanner scName = new Scanner(System.in);
 		String playerChoice = scName.nextLine();
 		
-		while (playerChoice.isEmpty()|| findKeyword(playerChoice, menu[0],0)==-1 || findKeyword(playerChoice, menu[1],0)==-1 || findKeyword(playerChoice, menu[2],0)==-1 || findKeyword(playerChoice, menu[3],0)==-1) {
+		while (playerChoice.isEmpty() && !playerChoice.equals("1") && !playerChoice.equals("2") && !playerChoice.equals("3") && !playerChoice.equals("4")) {
 			System.out.println("Please type in one or more of the menu items.");
 			playerChoice = scName.nextLine();
 		}
 		
-		if (findKeyword(playerChoice, menu[0],0)!=-1)
+		if (playerChoice.equals("1"))
 		{
-			if (player.getMoney() - priceSandwich<0)
+			if ((player.getMoney() - priceSandwich)<0)
 			{
 				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
 				choosePurchase();
 			}
 			
 			System.out.println("You have purchased " + menu[0] + ".  That will cost you " + priceSandwich);
+			player.setMoney(player.getMoney()-priceSandwich);
+			player.setHungry(false);
+		}
+		else if (playerChoice.equals("2"))
+		{
+			if ((player.getMoney() - priceSandwich)<0)
+			{
+				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
+				choosePurchase();
+			}
+			
+			System.out.println("You have purchased " + menu[1] + ".  That will cost you " + priceSandwich);
+			player.setMoney(player.getMoney()-priceSandwich);
+			player.setHungry(false);
+		}
+		else if (playerChoice.equals("3"))
+		{
+			if ((player.getMoney() - priceDrink)<0)
+			{
+				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
+				choosePurchase();
+			}
+			
+			System.out.println("You have purchased " + menu[2] + ".  That will cost you " + priceDrink);
+			player.setMoney(player.getMoney()-priceDrink);
+			player.setThirsty(false);
+		}
+		else if (playerChoice.equals("4"))
+		{
+			if ((player.getMoney() - priceDrink)<0)
+			{
+				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
+				choosePurchase();
+			}
+			
+			System.out.println("You have purchased " + menu[3] + ".  That will cost you " + priceDrink);
+			player.setMoney(player.getMoney()-priceDrink);
+			player.setThirsty(false);
 		}
 	}
 	
-	public int findKeyword(String statement, String goal,int startPos)
-	{
-		String phrase = statement.trim().toLowerCase();
-		goal = goal.toLowerCase();
-
-		// The only change to incorporate the startPos is in
-
-		// the line below
-		int psn = phrase.indexOf(goal, startPos);
-
-		// Refinement--make sure the goal isn't part of a
-
-		// word
-		while (psn >= 0)
-		{
-
-			// Find the string of length 1 before and after
-
-			// the word
-
-			String before = " ", after = " ";
-
-			if (psn > 0)
-
-			{
-
-				before = phrase.substring(psn - 1, psn);
-
-			}
-
-			if (psn + goal.length() < phrase.length())
-
-			{
-
-				after = phrase.substring(
-
-						psn + goal.length(),
-
-						psn + goal.length() + 1);
-
-			}
-
-
-
-			// If before and after aren't letters, we've
-
-			// found the word
-
-			if (((before.compareTo("a") < 0) || (before
-
-					.compareTo("z") > 0)) // before is not a
-
-											// letter
-
-					&& ((after.compareTo("a") < 0) || (after
-
-							.compareTo("z") > 0)))
-
-			{
-
-				return psn;
-
-			}
-
-
-
-			// The last position didn't work, so let's find
-
-			// the next, if there is one.
-
-			psn = phrase.indexOf(goal, psn + 1);
-
-
-
-		}
-
-
-
-		return -1;
-
-	}
+	
 }

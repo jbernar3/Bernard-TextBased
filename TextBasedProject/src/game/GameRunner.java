@@ -86,6 +86,14 @@ public class GameRunner {
             gameNeighborhood.printBoard();
 
 			System.out.println("You have $" + player.getMoney() + " left.");
+			if (player.getHungry())
+			{
+				System.out.println("YOU ARE HUNGRY");
+			}
+			if (player.getThirsty())
+			{
+				System.out.println("YOU ARE THIRSTY");
+			}
             
             String move = player.chooseMove();
             gameNeighborhood.getBuildings()[0][0].setExplored(true);
@@ -124,6 +132,9 @@ public class GameRunner {
             if (nextBuild.getBuildingType()== 1)
             {
             	System.out.println("This is a deli.");
+            	nextBuild.setPlayer(player);
+            	nextBuild.print();
+            	//Deli del = gameNeighborhood.getBuildings()[player.getPosX()][player.getPosY()];
             }
             
             

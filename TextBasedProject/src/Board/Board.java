@@ -7,12 +7,13 @@ import game.Person;
 import Building.Building;
 import Building.Deli;
 import Building.EmptyBuilding;
+import Building.home;
 
 public class Board {
 
 
 	public static final int SMALL = 6;
-	public static final int LARGE = 10;
+	public static final int LARGE = 9;
 	
 	String name;
 	private Person player;
@@ -104,6 +105,16 @@ public class Board {
 		del.setBuildingType(1);
     }
     
+    private void createHome(int randRoomIndex)
+    {
+    	Person[] occupants = null;
+    	home house = new home(occupants);
+    	home.setIndex(randRoomIndex);
+    	home.setPlayer(randRoomIndex);
+    	buildings[getXFromBuildingIndex(randRoomIndex)][getYFromBuildingIndex(randRoomIndex)] = house;
+    	house.setBuildingType(3);
+    }
+    
     
     public void generateBuildings() 
     {
@@ -163,6 +174,15 @@ public class Board {
 	    for (int x=0; x<amountOfCLO; x++) {
 	    	int randBuildingIndex = randomBuildings[x+amountOfDelis];
 	    	
+	    }
+	    for (int x=0; x<amountOfHome;x++)
+	    {
+	    	int randBuildingIndex = randomBuildings[x+amountOfDelis+amountOfCLO];
+	    	while (randBuildingIndex==0)
+	    	{
+	    		randBuildingIndex = randomBuildings[x+amountOfDelis+amountOfCLO];
+	    	}
+	    	createHome(randBuildingIndex);
 	    }
     	
     }
