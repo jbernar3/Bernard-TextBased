@@ -136,6 +136,13 @@ public class GameRunner {
             	nextBuild.print();
             	//Deli del = gameNeighborhood.getBuildings()[player.getPosX()][player.getPosY()];
             }
+            //If the next building is home.
+            if (nextBuild.getBuildingType()==3)
+            {
+            	gameNeighborhood.printBoard();
+            	System.out.println("This is home.");
+            	gameOn = false;
+            }
             
             
         }

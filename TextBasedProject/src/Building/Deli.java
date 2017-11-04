@@ -78,62 +78,78 @@ public class Deli extends Building
 	
 	public void choosePurchase()
 	{
-		System.out.println("What would you like to purchase?\nType in the number corresponding to what you want to buy.");
+		System.out.println("Would you like to purchase something??");
 		Scanner scName = new Scanner(System.in);
-		String playerChoice = scName.nextLine();
+		String playerWant = scName.nextLine();
+		while((playerWant.isEmpty()) || (!playerWant.equalsIgnoreCase("yes") &&!playerWant.equalsIgnoreCase("no")))
+		{
+			System.out.println("Please just say yes or no.. the deli has other impatient customers.");
+			System.out.println("Would you like to purchase something??");
+			playerWant = scName.nextLine();		
+		}
+		if (playerWant.equalsIgnoreCase("no"))
+		{
+			System.out.println("Okay goodbye have a nice night.");
+		}
+		else
+		{
+			System.out.println("Please put type in the number corresponding to the item you want.");
+			Scanner scName1 = new Scanner(System.in);
+			String playerChoice = scName1.nextLine();
 		
-		while (playerChoice.isEmpty() && !playerChoice.equals("1") && !playerChoice.equals("2") && !playerChoice.equals("3") && !playerChoice.equals("4")) {
-			System.out.println("Please type in one or more of the menu items.");
-			playerChoice = scName.nextLine();
-		}
+			while (playerChoice.isEmpty() && !playerChoice.equals("1") && !playerChoice.equals("2") && !playerChoice.equals("3") && !playerChoice.equals("4")) {
+				System.out.println("Please type in one of the menu items.");
+				playerChoice = scName1.nextLine();
+			}
 		
-		if (playerChoice.equals("1"))
-		{
-			if ((player.getMoney() - priceSandwich)<0)
+			if (playerChoice.equals("1"))
 			{
-				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
-				choosePurchase();
-			}
+				if ((player.getMoney() - priceSandwich)<0)
+				{
+					System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
+					choosePurchase();
+				}
 			
-			System.out.println("You have purchased " + menu[0] + ".  That will cost you " + priceSandwich);
-			player.setMoney(player.getMoney()-priceSandwich);
-			player.setHungry(false);
-		}
-		else if (playerChoice.equals("2"))
-		{
-			if ((player.getMoney() - priceSandwich)<0)
+				System.out.println("You have purchased " + menu[0] + ".  That will cost you " + priceSandwich);
+				player.setMoney(player.getMoney()-priceSandwich);
+				player.setHungry(false);
+			}
+			else if (playerChoice.equals("2"))
 			{
-				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
-				choosePurchase();
-			}
+				if ((player.getMoney() - priceSandwich)<0)
+				{
+					System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
+					choosePurchase();
+				}
 			
-			System.out.println("You have purchased " + menu[1] + ".  That will cost you " + priceSandwich);
-			player.setMoney(player.getMoney()-priceSandwich);
-			player.setHungry(false);
-		}
-		else if (playerChoice.equals("3"))
-		{
-			if ((player.getMoney() - priceDrink)<0)
+				System.out.println("You have purchased " + menu[1] + ".  That will cost you " + priceSandwich);
+				player.setMoney(player.getMoney()-priceSandwich);
+				player.setHungry(false);
+			}
+			else if (playerChoice.equals("3"))
 			{
-				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
-				choosePurchase();
-			}
+				if ((player.getMoney() - priceDrink)<0)
+				{					
+					System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
+					choosePurchase();
+				}
 			
-			System.out.println("You have purchased " + menu[2] + ".  That will cost you " + priceDrink);
-			player.setMoney(player.getMoney()-priceDrink);
-			player.setThirsty(false);
-		}
-		else if (playerChoice.equals("4"))
-		{
-			if ((player.getMoney() - priceDrink)<0)
+				System.out.println("You have purchased " + menu[2] + ".  That will cost you " + priceDrink);
+				player.setMoney(player.getMoney()-priceDrink);
+				player.setThirsty(false);
+			}
+			else if (playerChoice.equals("4"))
 			{
-				System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
-				choosePurchase();
-			}
+				if ((player.getMoney() - priceDrink)<0)
+				{
+					System.out.println("Sorry you only have $" + player.getMoney() + ". Please try and order something again.");
+					choosePurchase();
+				}
 			
-			System.out.println("You have purchased " + menu[3] + ".  That will cost you " + priceDrink);
-			player.setMoney(player.getMoney()-priceDrink);
-			player.setThirsty(false);
+				System.out.println("You have purchased " + menu[3] + ".  That will cost you " + priceDrink);
+				player.setMoney(player.getMoney()-priceDrink);
+				player.setThirsty(false);
+			}
 		}
 	}
 	

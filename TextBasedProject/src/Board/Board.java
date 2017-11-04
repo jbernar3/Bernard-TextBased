@@ -13,7 +13,7 @@ public class Board {
 
 
 	public static final int SMALL = 6;
-	public static final int LARGE = 9;
+	public static final int LARGE = 8;
 	
 	String name;
 	private Person player;
@@ -109,8 +109,8 @@ public class Board {
     {
     	Person[] occupants = null;
     	home house = new home(occupants);
-    	home.setIndex(randRoomIndex);
-    	home.setPlayer(randRoomIndex);
+    	house.setIndex(randRoomIndex);
+    	//house.setPlayer(randRoomIndex);
     	buildings[getXFromBuildingIndex(randRoomIndex)][getYFromBuildingIndex(randRoomIndex)] = house;
     	house.setBuildingType(3);
     }
@@ -142,8 +142,8 @@ public class Board {
     	int amountOfHome = 1;
     	if (boardSize == Board.SMALL)
     	{
-    		amountOfDelis = 8;
-    		amountOfCLO = 5;
+    		amountOfDelis = 6;
+    		amountOfCLO = 3;
     	}
     	
     	else if (boardSize == Board.LARGE)
