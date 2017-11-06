@@ -5,7 +5,7 @@ import Building.Building;
 
 public class Person {
 	String name;
-	private int amountOfMoney = 10;
+	public int amountOfMoney = 10;
 	public boolean hungry = true;
 	public boolean thirsty = true;
 	public int numOfMoves = 0;

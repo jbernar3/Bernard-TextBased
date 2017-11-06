@@ -5,13 +5,22 @@ import java.util.Collections;
 import java.util.Scanner;
 import game.Person;
 import Building.Building;
+import Building.ChoiceBuilding;
 import Building.Deli;
 import Building.EmptyBuilding;
+import Building.RockPaperScissors;
 import Building.home;
+
+/*
+ * Text Based Adventure Project
+ * @author Jefferson C. Bernard
+ * Period 6-7
+ * 11/5/17 final
+ */
 
 public class Board {
 
-
+	//Dimension sizes for types of boards.
 	public static final int SMALL = 6;
 	public static final int LARGE = 8;
 	
@@ -20,7 +29,11 @@ public class Board {
     private Building[][] buildings;
     private int boardSize = 0;
     
-
+    /*
+     * Constructor.
+     * Creates the Board.
+     * @param the size of the board in integer form.
+     */
     public Board(int boardSizeInt) 
     {
 
@@ -29,6 +42,7 @@ public class Board {
        
     }
 
+    //Prints the board based on where the user is.
     public void printBoard() 
     {
         
@@ -40,44 +54,44 @@ public class Board {
             System.out.println();
         }
     }
-    
+    //@return the player.
     public Person getPlayer()
     {
     	return player;
     }
     
+    /*
+     * Set's the player received as the player.
+     * @param Person that is the player being received to be set.
+     */
     public void setPlayer(Person player)
     {
     	this.player = player;
     }
     
+    //@return 2d array of buildings for later use.
     public Building[][] getBuildings() 
     {
         return buildings;
     }
-
+    
+    //@return the integer value of the x coordinate of the building on the board.
     private int getXFromBuildingIndex(int index) 
     {
     	return (int) index/boardSize;
     }
     
+    //@return the integer value of the y coordinate of the building on the board.
     private int getYFromBuildingIndex(int index) 
     {
     	return index % boardSize;
     }
     
     /*
-     * You can get money from the banks as you reach them.
-     * You can buy food and drinks from deli.
-     * Your goal is to get food from at least one deli before you reach home and as much money as you can get.
-     * You don't know where home is and don't know where the delis are.
-     * Also, there are hidden people and places that take your money or you have to fight.
+     * Checks whether the player's index is the same as the building's index.
+     * @return a boolean determining if the player is in this building.
+     * @param the building it is checking.
      */
-    
-    //int amountOfBanks;
-    //int amountOfDelis;
-    //int amountHouse = 1;
-    
     private boolean isOccupied1(Building building) 
     {
     	
@@ -95,6 +109,10 @@ public class Board {
     
     }
     
+    /*
+     * Creates a deli.
+     * @param the assigned random room index.
+     */
     private void createDeli(int randRoomIndex) 
     {
     	Person[] occupants = null;
@@ -105,17 +123,51 @@ public class Board {
 		del.setBuildingType(1);
     }
     
+    /*
+     * Creates a rock paper scissor game.
+     * @param the assigned random room index.
+     */
+    private void createRPS(int randRoomIndex) 
+    {
+    	Person[] occupants = null;
+		RockPaperScissors rps = new RockPaperScissors(occupants);    			
+		rps.setIndex(randRoomIndex);	
+		rps.setPlayer(player);
+		buildings[getXFromBuildingIndex(randRoomIndex)][getYFromBuildingIndex(randRoomIndex)] = rps;
+		rps.setBuildingType(2);
+    }
+    
+    /*
+     * Creates the home.
+     * @param the assigned random room index.
+     */
     private void createHome(int randRoomIndex)
     {
     	Person[] occupants = null;
     	home house = new home(occupants);
     	house.setIndex(randRoomIndex);
-    	//house.setPlayer(randRoomIndex);
+    	house.setPlayer(player);
     	buildings[getXFromBuildingIndex(randRoomIndex)][getYFromBuildingIndex(randRoomIndex)] = house;
     	house.setBuildingType(3);
     }
     
+    /*
+     * Creates choice building game.
+     * @param assigned random room index.
+     */
+    private void createChoice(int randRoomIndex)
+    {
+    	Person[] occupants = null;
+    	ChoiceBuilding choice = new ChoiceBuilding(occupants);
+    	choice.setIndex(randRoomIndex);
+    	choice.setPlayer(player);
+    	buildings[getXFromBuildingIndex(randRoomIndex)][getYFromBuildingIndex(randRoomIndex)] = choice;
+    	choice.setBuildingType(4);
+    }
     
+    /*
+     * Generates all types of rooms randomly.
+     */
     public void generateBuildings() 
     {
     	Person[] occupants = null;
@@ -123,6 +175,7 @@ public class Board {
     	if (buildings == null)
     		return;
     	
+    	//Makes the buildings all empty at first.
 		int index=0;
     	for (int x=0; x<buildings.length; x++) 
     	{
@@ -137,19 +190,23 @@ public class Board {
    			}
     	}
     	
+    	//Decides and randomly assigns the different the types of buildings.
     	int amountOfDelis = 0;
-    	int amountOfCLO = 0;
+    	int amountOfRPS = 0;
     	int amountOfHome = 1;
+    	int amountOfChoice = 0;
     	if (boardSize == Board.SMALL)
     	{
-    		amountOfDelis = 6;
-    		amountOfCLO = 3;
+    		amountOfDelis = 3;
+    		amountOfRPS = 5;
+    		amountOfChoice = 3;
     	}
     	
     	else if (boardSize == Board.LARGE)
     	{
-    		amountOfDelis = 12;
-    		amountOfCLO = 9;
+    		amountOfDelis = 5;
+    		amountOfRPS = 7;
+    		amountOfChoice = 6;
     	}
     	
     	int lastBuildingIndex = boardSize*boardSize;
@@ -161,33 +218,50 @@ public class Board {
 	    Collections.shuffle(Arrays.asList(randomBuildings));
 	    
 	    // Deli
-	    for (int x=0; x<amountOfDelis; x++) 
+	    for (int i=0; i<amountOfDelis; i++) 
 	    {
-	    	int randBuildingIndex = randomBuildings[x];
+	    	int randBuildingIndex = randomBuildings[i];
 	    	while (randBuildingIndex == 0)
 	    	{
-	    		randBuildingIndex = randomBuildings[x];
+	    		randBuildingIndex = randomBuildings[i];
 	    	}
 	    	createDeli(randBuildingIndex);
 	    }
+	    
     	
-	    for (int x=0; x<amountOfCLO; x++) {
-	    	int randBuildingIndex = randomBuildings[x+amountOfDelis];
-	    	
-	    }
-	    for (int x=0; x<amountOfHome;x++)
-	    {
-	    	int randBuildingIndex = randomBuildings[x+amountOfDelis+amountOfCLO];
+	    for (int i=0; i<amountOfRPS; i++) {
+	    	int randBuildingIndex = randomBuildings[i+amountOfDelis];
 	    	while (randBuildingIndex==0)
 	    	{
-	    		randBuildingIndex = randomBuildings[x+amountOfDelis+amountOfCLO];
+	    		randBuildingIndex = randomBuildings[i+amountOfDelis];
+	    	}
+	    	createRPS(randBuildingIndex);
+	    	
+	    }
+	    for (int i=0; i<amountOfChoice; i++)
+	    {
+	    	int randBuildingIndex = randomBuildings[i+amountOfDelis+amountOfRPS];
+	    	while (randBuildingIndex==0)
+	    	{
+	    		randBuildingIndex = randomBuildings[i+amountOfDelis+amountOfRPS];
+	    	}
+	    	createChoice(randBuildingIndex);
+	    }
+	    
+	    for (int i=0; i<amountOfHome; i++)
+	    {
+	    	int randBuildingIndex = randomBuildings[i+amountOfDelis+amountOfRPS];
+	    	while (randBuildingIndex==0)
+	    	{
+	    		randBuildingIndex = randomBuildings[i+amountOfDelis+amountOfRPS+amountOfChoice];
 	    	}
 	    	createHome(randBuildingIndex);
 	    }
+	   
     	
     }
     
-    
+    //Asks the user the name of the neighborhood.
     public void askForName() 
 	{
 
@@ -207,7 +281,7 @@ public class Board {
 		
 	}
     
-  
+    //Returns the name of the board.
 	public String getName()
 	{
 		return name;

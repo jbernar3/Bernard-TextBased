@@ -1,8 +1,15 @@
 package Building;
 import java.util.Random;
 import java.util.Scanner;
-import utilities.Utility;
 import game.Person;
+
+/*
+ * Text Based Adventure Project
+ * @author Jefferson C. Bernard
+ * Period 6-7
+ * 11/5/17 final
+ */
+
 public class Deli extends Building
 {
 	String[]menu = {"","","","",""};
@@ -11,11 +18,21 @@ public class Deli extends Building
 	int priceDrink = rand.nextInt(4)+1;
 	int buildingLevel;
 	Person player = null;
-	
+	int sleepTime = 500;
+	/*
+	 * Constructor
+	 * @param Array of Person objects named occupants.
+	 * Uses super class function.
+	 */
 	public Deli(Person[] occupants)
 	{
 		super(occupants);
 	}
+	
+	/*
+     * Set's the player received as the player.
+     * @param Person that is the player being received to be set.
+     */
 	public void setPlayer(Person player)
 	{
 		this.player = player;
@@ -54,6 +71,7 @@ public class Deli extends Building
 		
 		return menu;
 	}
+	
 	//Prints out the menu of the deli with the prices of drinks and sandwiches at the particular deli.
 	public void printMenu()
 	{
@@ -67,7 +85,9 @@ public class Deli extends Building
 		System.out.println("Drinks cost "+priceDrink);
 		System.out.println("Sandwiches cost "+priceSandwich);
 	}
-	public void print() 
+	
+	//Print void function from Building.
+	public void print() throws InterruptedException 
 	{
 		System.out.println("You've ran into a deli!");
 		System.out.println("-------------");
@@ -76,7 +96,8 @@ public class Deli extends Building
 		choosePurchase();
 	}
 	
-	public void choosePurchase()
+	//Player chooses what to buy and has their money spent.
+	public void choosePurchase() throws InterruptedException
 	{
 		System.out.println("Would you like to purchase something??");
 		Scanner scName = new Scanner(System.in);
@@ -84,12 +105,14 @@ public class Deli extends Building
 		while((playerWant.isEmpty()) || (!playerWant.equalsIgnoreCase("yes") &&!playerWant.equalsIgnoreCase("no")))
 		{
 			System.out.println("Please just say yes or no.. the deli has other impatient customers.");
+			Thread.sleep(sleepTime);
 			System.out.println("Would you like to purchase something??");
 			playerWant = scName.nextLine();		
 		}
 		if (playerWant.equalsIgnoreCase("no"))
 		{
 			System.out.println("Okay goodbye have a nice night.");
+			Thread.sleep(sleepTime);
 		}
 		else
 		{
@@ -111,6 +134,7 @@ public class Deli extends Building
 				}
 			
 				System.out.println("You have purchased " + menu[0] + ".  That will cost you " + priceSandwich);
+				Thread.sleep(sleepTime);
 				player.setMoney(player.getMoney()-priceSandwich);
 				player.setHungry(false);
 			}
@@ -123,6 +147,7 @@ public class Deli extends Building
 				}
 			
 				System.out.println("You have purchased " + menu[1] + ".  That will cost you " + priceSandwich);
+				Thread.sleep(sleepTime);
 				player.setMoney(player.getMoney()-priceSandwich);
 				player.setHungry(false);
 			}
@@ -135,6 +160,7 @@ public class Deli extends Building
 				}
 			
 				System.out.println("You have purchased " + menu[2] + ".  That will cost you " + priceDrink);
+				Thread.sleep(sleepTime);
 				player.setMoney(player.getMoney()-priceDrink);
 				player.setThirsty(false);
 			}
@@ -147,6 +173,7 @@ public class Deli extends Building
 				}
 			
 				System.out.println("You have purchased " + menu[3] + ".  That will cost you " + priceDrink);
+				Thread.sleep(sleepTime);
 				player.setMoney(player.getMoney()-priceDrink);
 				player.setThirsty(false);
 			}
